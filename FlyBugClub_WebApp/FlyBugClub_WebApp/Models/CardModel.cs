@@ -25,30 +25,48 @@
 
         public int addItem(Item item)
         {
+            foreach (var it in _items)
+            {
+                if(it.Id == item.Id)
+                {
+                    it.Quantity += item.Quantity;
+                    it.lineTotla = it.Quantity * it.Price;
+
+                    return _items.Count;
+                }
+            }
+            _items.Add(item);
+
             foreach(var it in _items)
             {
-                it.lineTotla += it.Quantity * it.Price;
+                Total += it.lineTotla;
             }
 
-            _items.Add(item);
             return _items.Count;
         }
 
         public void UpdateQuantity(string id, int qty, string btnCmd)
         {
-            foreach(Item it in _items)
+            foreach (Item it in _items)
             {
-                if(it.Id == id)
+                if (it.Id == id)
                 {
-                    if(btnCmd == "+")
+                    if (btnCmd == "+")
                     {
                         it.Quantity += qty;
+                        it.lineTotla = it.Quantity * it.Price;
                     }
                     else
                     {
                         it.Quantity -= qty;
+                        it.lineTotla = it.Quantity * it.Price;
                     }
                 }
+            }
+            Total = 0;
+            foreach (var it in _items)
+            {
+                Total += it.lineTotla;
             }
         }
 

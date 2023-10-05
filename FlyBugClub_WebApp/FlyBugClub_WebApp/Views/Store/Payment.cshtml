@@ -14,7 +14,6 @@
                             <div class="center">
                                 <button class="shop-emptycard"><a asp-controller="Store" asp-action="Store">Cửa hàng</a></button>
                             </div>
-                            
                         </div>
                     </div>
                 }
@@ -24,7 +23,7 @@
                         <table class="payment">
                             <thead>
                                 <tr>
-                                    <th class="first remove"></th>
+                                    <th class="first remove">#</th>
                                     <th>Hình ảnh</th>
                                     <th>Sản phẩm</th>
                                     <th class="qty">Số lượng</th>
@@ -41,15 +40,22 @@
                                         <td class="item-name">@item.Name</td>
                                         <td class="qty">
                                             <div class="center">
-                                                <div class="qty">
-                                                    <button class="minus" value="-" onclick="decreaseQuantity('@item.Id')">
-                                                        <i class="fa-solid fa-minus"></i>
-                                                    </button>
-                                                    <p id="quantity-@item.Id">x @item.Quantity</p>
-                                                    <button class="plus" value="+" onclick="increaseQuantity('@item.Id')">
-                                                        <i class="fa-solid fa-plus"></i>
-                                                    </button>
-                                                </div>
+                                                @using (Html.BeginForm("UpdateQuantity", "store", FormMethod.Post))
+                                                {
+                                                    <div class="qty">
+                                                        @Html.HiddenFor(m=>item.Id)
+
+                                                        <button type="submit" class="minus" value="-" name="btnUpdateQuantity">
+                                                            <i class="fa-solid fa-minus"></i>
+                                                        </button>
+
+                                                        <p>x @item.Quantity</p>
+
+                                                        <button type="submit" class="plus" value="+" name="btnUpdateQuantity">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                }
                                             </div>
                                         </td>
                                         <td>@item.Price.ToString("0.000") VND</td>
@@ -138,7 +144,7 @@
                                 </a>
                             </button>
                             <button class="icon icon-share">
-                                <a href="#">
+                                <a asp-controller="Store" asp-action="AddToCard" asp-route-id="@top.DeviceId">
                                     <i class="fa-solid fa-cart-plus"></i>
                                 </a>
                             </button>
@@ -148,278 +154,6 @@
                         </div>
                     </div>
                 }
-                
-
-                @*<div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/bluth.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/buzzer.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/dht11.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/led.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/fm52.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/cam-bien-mua-5jdk.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/8ICG.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/ArduinoUnoR3.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/cap-cai-cai.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>
-                <div class="item-card swiper-slide">
-                    <div>
-                        <img src="~/img/img_products/cam-bien-anh-sang.jpg" alt="Photo item store">
-                        <h3>Bread board</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                    </div>
-                    <div class="center icon-card">
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-share"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-love">
-                            <a href="#">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </button>
-                        <button class="icon icon-share">
-                            <a href="#">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </a>
-                        </button>
-                    </div>
-                    <div class="center item-price">
-                        <h2>18.000 VNĐ</h2>
-                    </div>
-                </div>*@
             </div>
         </div>
         <div class="swiper-button-next swiper-btn"></div>

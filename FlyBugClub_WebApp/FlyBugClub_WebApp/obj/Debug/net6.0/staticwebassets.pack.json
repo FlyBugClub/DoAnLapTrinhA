@@ -81,6 +81,10 @@
       "PackagePath": "staticwebassets\\img\\img_icon\\bug-icon.png"
     },
     {
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_icon\\spyware.gif",
+      "PackagePath": "staticwebassets\\img\\img_icon\\spyware.gif"
+    },
+    {
       "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_icon\\user.png",
       "PackagePath": "staticwebassets\\img\\img_icon\\user.png"
     },
@@ -225,16 +229,20 @@
       "PackagePath": "staticwebassets\\img\\img_products\\servo-sg90.jpg"
     },
     {
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_products\\servo20kg.jpg",
+      "PackagePath": "staticwebassets\\img\\img_products\\servo20kg.jpg"
+    },
+    {
       "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_products\\wemosD1R2.jpg",
       "PackagePath": "staticwebassets\\img\\img_products\\wemosD1R2.jpg"
     },
     {
-      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\pagination.js",
-      "PackagePath": "staticwebassets\\js\\pagination.js"
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\GoToTop.js",
+      "PackagePath": "staticwebassets\\js\\GoToTop.js"
     },
     {
-      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\qty.js",
-      "PackagePath": "staticwebassets\\js\\qty.js"
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\pagination.js",
+      "PackagePath": "staticwebassets\\js\\pagination.js"
     },
     {
       "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\reloader.js",

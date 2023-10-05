@@ -1,4 +1,5 @@
 ﻿using FlyBugClub_WebApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlyBugClub_WebApp.Repository
 {
@@ -10,6 +11,7 @@ namespace FlyBugClub_WebApp.Repository
         public List<Device> GetSensorProduct(string Cateid);
         public List<Device> GetHardwareProduct(string Cateid);
         public List<Device> GetConnectionProduct(string Cateid);
+        public List<Device> SearchByName(string keyword);
 
         public Device findById(string id);
     }
@@ -49,6 +51,11 @@ namespace FlyBugClub_WebApp.Repository
         public List<Device> GetSensorProduct(string Cateid)
         {
             return _ctx.Devices.Where(x => x.CategoryId == "1").ToList();
+        }
+
+        public List<Device> SearchByName(string keyword)
+        {
+            return _ctx.Devices.Where(x=>x.Name.Contains(keyword)).ToList();
         }
 
         public List<Device> Top10BestSeller()

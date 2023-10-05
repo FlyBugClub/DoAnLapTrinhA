@@ -1,5 +1,27 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model List<FlyBugClub_WebApp.Models.Device>
+@*@model MenuCard*@
+
+<h1>Chi tiết sản phẩm</h1>
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="image"><img src="~/img/img_products/@item.ImagePath" alt="Item"></td>
+        <td class="item-name">@item.Name</td>
+        <td class="qty">
+            <div class="center">
+                <div class="qty">
+                    <button class="minus" value="-">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <p>x @item.Quantity</p>
+                    <button class="plus" value="+">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </td>
+        <td>@item.Price.ToString("0.000") VND</td>
+    </tr>
 }

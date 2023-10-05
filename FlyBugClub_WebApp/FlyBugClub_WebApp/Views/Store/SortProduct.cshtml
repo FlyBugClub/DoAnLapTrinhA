@@ -1,10 +1,11 @@
-﻿@model List<FlyBugClub_WebApp.Models.Device>
+﻿@*@model List<FlyBugClub_WebApp.Models.Device>*@
+@model MenuCard
 
 <section class="body">
     <div class="container">
         <div class="row">
             <div class="col col-lg-3 left">
-                <div class="search">
+                <div class="search" id="scroll-area">
                     <div class="store-note">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem placeat nobis aliquid culpa quasi vero ipsam pariatur quidem ex error, unde expedita minus aspernatur quos nihil, ad assumenda repellat alias.</p>
                     </div>
@@ -16,9 +17,15 @@
                     <div class="shopping-function">
                         <p>Giỏ hàng</p>
                         <div class="center">
-                            <div class="qty">
-                                <p>1</p>
-                            </div>
+                            @if(Model.Card.GetCountItem() == 0)
+                            {
+                                
+                            }
+                            else{
+                                <div class="qty">
+                                    <p>@Model.Card.GetCountItem()</p>
+                                </div>
+                            }
                             <div class="center ">
                                 <button class="icon-shopping">
                                     <a asp-action="Payment"
@@ -29,9 +36,12 @@
                             </div>
                         </div>
                         <p>Hoặc tìm kiếm sản phẩm</p>
-                        <div class="center">
-                            <input type="text" placeholder="Tìm kiếm...">
-                        </div>
+                        <form class="search-form" action="@Url.Action("SearchProducts", "Store")" method="get">
+                            <div class="center">
+                                <input type="text" class="text-input" id="search-input" name="productName" placeholder="Tìm kiếm..." />
+                                <button type="submit" class="search-button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -40,27 +50,30 @@
                     <div class="store">
                         <!-- <h1>Cửa hàng</h1> -->
                         <div class="fill-function">
-                            <span>Bug Store</span>
-                            <select class="category" name="" id="">
-                                <option value="" selected>Tất cả</option>
-                                <option value="">Cảm biến</option>
-                                <option value="">Phần cứng</option>
-                                <option value="">Đèn</option>
-                                <option value="">Cáp nối</option>
-                            </select>
-                            <form>
+                            <div action="function-leftside">
+                                <form method="get" asp-action="FillProduct" asp-controller="Store" >
+                                    <span>Bug Store</span>
+                                    <select name="fillOption" id="fillOption" class="category" onchange="this.form.submit()">
+                                        <option value="all">Tất cả</option>
+                                        <option value="1">Cảm biến</option>
+                                        <option value="2">Phần cứng</option>
+                                        <option value="3">Kết nối</option>
+                                    </select>
+                                </form>
+                            </div>
+                            
+                            <form class="fill-form" method="get" asp-action="SortProduct" asp-controller="Store">
                                 <div class="fill">
-                                    <button><a href="#">Giảm giá</a></button>
-                                    <button><a href="#">Giá tăng dần</a></button>
-                                    <button><a href="#">Giá giảm dần</a></button>
+                                    <button type="submit" name="sortOption" value="BestSelling">Bán chạy</button>
+                                    <button type="submit" name="sortOption" value="PriceAscending">Giá tăng dần</button>
+                                    <button type ="submit" name="sortOption" value="PriceDescending">Giá giảm dần</button>
                                 </div>
                             </form>
-                            
                         </div>
                         <hr style="width:100%;text-align:left;margin-left:0; color:white; height: 2px; margin-top: 8px;">
                         <div class="item-store">
                             <div class="row">
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.GetDevices)
                                 {
                                     <div class="col col-xl-4">
                                         <div class="item-card">
@@ -81,13 +94,13 @@
                                                         </a>
                                                     </button>
                                                     <button class="icon icon-share">
-                                                        <a href="#">
+                                                        <a asp-controller="Store" asp-action="AddToCard" asp-route-id="@item.DeviceId">
                                                             <i class="fa-solid fa-cart-plus"></i>
                                                         </a>
                                                     </button>
                                                 </div>
                                                 <div class="center item-price">
-                                                    <h2>@item.Price.000 VNĐ</h2>
+                                                    <h2>@item.Price.ToString("0.000") VNĐ</h2>
                                                 </div>
                                             </a>
 
@@ -96,24 +109,68 @@
                                 }
                             </div>
                         </div>
-                        <div class="left-side">
-                            <div class="pagination">
-                                <ul>
-                                    <li class="btn-back">
-                                        <a class="page-link" asp-controller=" Store" asp-action="SortProduct" asp-route-page="@(ViewBag.CurrentPage - 1)"><i class="fa-solid fa-location-arrow"></i></a>
-                                    </li>
-                                    @for (int page1 = 1; page1 <= ViewBag.TotalPages; page1++)
-                                    {
-                                        <li class="link">
-                                            <a onclick="activeLink()" asp-controller="Store" asp-action="SortProduct" asp-route-page="@page1">@page1</a>
-                                        </li>
-                                    }
-                                    <li class="btn-next">
-                                        <a class="page-link" asp-controller=" Store" asp-action="SortProduct" asp-route-page="@(ViewBag.CurrentPage + 1)"><i class="fa-solid fa-location-arrow"></i></a>
-                                    </li>
-                                </ul>
+                        @*<div style="margin-top:100px"></div>*@
+                        @{
+                            int currentPage = ViewBag.CurrentPage;
+                            int totalPages = ViewBag.TotalPages;
+                            int maxVisiblePages = 3;
+                            int prevPage = currentPage - 1;
+                            int nextPage = currentPage + 1;
+                            string controllerName = "store";
+                        }
+                        @if (@ViewBag.TotalDevices > ViewBag.ItemPerPage)
+                        {
+                            <div class="left-side" style="display:block">
+                                <div class="pagination">
+                                    <ul>
+                                        @if(prevPage > 0){
+                                            <li class="btn-back">
+                                                <a class="page-link" href="@Url.Action("SortProduct", controllerName, new { sortOption = ViewBag.SortOption, page = prevPage })"><i class="fa-solid fa-location-arrow"></i></a>
+                                            </li>
+                                        }
+
+                                        <li><a href="@Url.Action("SortProduct", controllerName, new { sortOption = ViewBag.SortOption, page = 1 })">1</a></li>
+
+                                        @if(currentPage > maxVisiblePages / 2 + 1){
+                                            <li>...</li>
+                                        }
+
+                                        @for (int i = Math.Max(2, currentPage - (int)(maxVisiblePages / 2)); i <= Math.Min(totalPages - 1, currentPage + (int)(maxVisiblePages / 2)); i++)
+                                        {
+                                            if (i == currentPage)
+                                            {
+                                                <li class="active"><span>@i</span></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@Url.Action("SortProduct", controllerName, new { sortOption = ViewBag.SortOption, page = i })">@i</a></li>
+                                            }
+                                        }
+
+                                        @if(currentPage < totalPages - (int)(maxVisiblePages / 2))
+                                        {
+                                            <li>...</li>
+                                        }
+
+                                        <li><a href="@Url.Action("SortProduct", controllerName, new { sortOption = ViewBag.SortOption, page = totalPages })">@totalPages</a></li>
+
+                                        @if (nextPage <= totalPages)
+                                        {
+                                            <li class="btn-next">
+                                                <a class="page-link" href="@Url.Action("SortProduct", controllerName, new { sortOption = ViewBag.SortOption, page = nextPage })"><i class="fa-solid fa-location-arrow"></i></a>
+                                            </li>
+                                        }
+                                       
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                        }
+                        else if (@ViewBag.TotalDevices <= ViewBag.ItemPerPage)
+                        {
+                            <div class="left-side" style="height: 100px"></div>
+                        }
+                        @*<h1 style="color:white"></h1>*@
+                       
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1sCOftVO35/kksEz8ij/5Bdrsv1VK1ITl8H42keHwi0=",
+  "Hash": "Ok71qapLQXNStHEPVO3sa89ors5B9BJzOaiMAQTx4IM=",
   "Source": "FlyBugClub_WebApp",
   "BasePath": "_content/FlyBugClub_WebApp",
   "Mode": "Default",
@@ -355,6 +355,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\img_icon\\bug-icon.png"
+    },
+    {
+      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_icon\\spyware.gif",
+      "SourceId": "FlyBugClub_WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
+      "BasePath": "_content/FlyBugClub_WebApp",
+      "RelativePath": "img/img_icon/spyware.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\img_icon\\spyware.gif"
     },
     {
       "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_icon\\user.png",
@@ -935,6 +952,23 @@
       "OriginalItemSpec": "wwwroot\\img\\img_products\\rfid.jpg"
     },
     {
+      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_products\\servo20kg.jpg",
+      "SourceId": "FlyBugClub_WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
+      "BasePath": "_content/FlyBugClub_WebApp",
+      "RelativePath": "img/img_products/servo20kg.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\img_products\\servo20kg.jpg"
+    },
+    {
       "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\img\\img_products\\servo-mg90.jpg",
       "SourceId": "FlyBugClub_WebApp",
       "SourceType": "Discovered",
@@ -1003,6 +1037,23 @@
       "OriginalItemSpec": "wwwroot\\img\\Video\\Sequence 03.mp4"
     },
     {
+      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\GoToTop.js",
+      "SourceId": "FlyBugClub_WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
+      "BasePath": "_content/FlyBugClub_WebApp",
+      "RelativePath": "js/GoToTop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\GoToTop.js"
+    },
+    {
       "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\pagination.js",
       "SourceId": "FlyBugClub_WebApp",
       "SourceType": "Discovered",
@@ -1018,23 +1069,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\pagination.js"
-    },
-    {
-      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\qty.js",
-      "SourceId": "FlyBugClub_WebApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
-      "BasePath": "_content/FlyBugClub_WebApp",
-      "RelativePath": "js/qty.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\qty.js"
     },
     {
       "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\js\\reloader.js",

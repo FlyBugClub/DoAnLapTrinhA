@@ -12,8 +12,6 @@
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
     <!-- CSS -->
     <link rel="stylesheet" href="~/css/swiper-bundle.min.css">
 
@@ -34,47 +32,52 @@
     <div id="backgrounf-loding">
         <img id="preloader" src="~/img/img_logo/FlyBugBLue1.png" alt="loading..."></img>
     </div>
-    <div class="body">
-        <!-- ======================== -->
-        <!-- ======== HEADER ======== -->
-        <!-- =========================-->
-        <header>
-            <div class="nav">
-                <div class="nav__links">
-                    <ul class="nav__links-left">
-                        <li><a asp-controller="Home" asp-action="Home">Trang chủ</a></li>
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">Đồ án</a></li>
-                        <li><a class="active" asp-controller="Store" asp-action="Store">Cửa hàng</a></li>
-                    </ul>
-                </div>
-                <div class="logo">
-                    <div>
-                        <img src="~/img/img_logo/logo.png" alt="FlyBug logo">
-                    </div>
-                </div>
-                <div class="nav__links">
-                    <ul class="nav__links-right">
-                        <li><a href="#">Hình ảnh</a></li>
-                        <li><a href="#">Chiêu mộ</a></li>
-                        <li class="center login">
-                            <a href="#">Đăng nhập</a>
-                            <span>/</span>
-                            <a href="#" class="dangky">Đăng ký</a>
-                        </li>
-                    </ul>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-angle-up"></i></button>
+    <!-- ======================== -->
+    <!-- ======== HEADER ======== -->
+    <!-- =========================-->
+    <header>
+        <div class="nav">
+            <div class="nav__links">
+                <ul class="nav__links-left">
+                    <li><a asp-controller="Home" asp-action="Home">Trang chủ</a></li>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Đồ án</a></li>
+                    <li><a class="active" asp-controller="Store" asp-action="Store">Cửa hàng</a></li>
+                </ul>
+            </div>
+            <div class="logo">
+                <div>
+                    <img src="~/img/img_logo/logo.png" alt="FlyBug logo">
                 </div>
             </div>
-            <div class="text-logo">
-                <img src="~/img/img_logo/FLYBUG CLUB.png" alt="Photo logo">
+            <div class="nav__links">
+                <ul class="nav__links-right">
+                    <li><a href="#">Hình ảnh</a></li>
+                    <li><a href="#">Chiêu mộ</a></li>
+                    <li class="center login">
+                        <a href="#">Đăng nhập</a>
+                        <span>/</span>
+                        <a href="#" class="dangky">Đăng ký</a>
+                    </li>
+                </ul>
             </div>
-        </header>
-    </div>
+        </div>
+        <div class="text-logo">
+            <img src="~/img/img_logo/FLYBUG CLUB.png" alt="Photo logo">
+        </div>
+    </header>
 
+    <!-- ======================== -->
+    <!-- ========= BODY ========= -->
+    <!-- =========================-->
     <div class="body">
         @RenderBody()
     </div>
 
+    <!-- ======================== -->
+    <!-- ======== FOOTER ======== -->
+    <!-- =========================-->
     <div class="body">
         <!-- ================================ -->
         <!-- =========== FOOTER ============= -->
@@ -125,13 +128,25 @@
         </footer>
     </div>
 
-    @*JS*@
-    <script src="~/js/swiper-bundle.min.js"></script>
 
+    <!-- ======== JavaScript ======== -->
+    @*JS*@
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="~/js/swiper-bundle.min.js"></script>
+    
+    @*Main Function*@
     <script src="~/js/reloader.js"></script>
+    <script src="~/js/GoToTop.js"></script>
+
+    @*Store*@
     <script src="~/js/pagination.js"></script>
+
+    @*Payment*@
     <script src="~/js/slidebestseller.js"></script>
     <script src="~/js/qty.js"></script>
+
+
+
     
     @*@await RenderSectionAsync("Scripts", required: false)*@
 </body>
