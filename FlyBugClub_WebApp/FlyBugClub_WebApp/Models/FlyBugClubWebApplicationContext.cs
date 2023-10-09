@@ -119,9 +119,7 @@ public partial class FlyBugClubWebApplicationContext : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength()
                 .HasColumnName("CategoryID");
-            entity.Property(e => e.CategoryName)
-                .HasMaxLength(10)
-                .IsFixedLength();
+            entity.Property(e => e.CategoryName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Device>(entity =>

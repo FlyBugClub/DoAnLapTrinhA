@@ -16,6 +16,46 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Category/CategoryDevice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcQ2F0ZWdvcnlEZXZpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Category/CreateCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcQ3JlYXRlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Category/EditCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcRWRpdENhdGVnb3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Dashboard/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Member/Member.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWVtYmVyXE1lbWJlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Shop/CreateDevice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hvcFxDcmVhdGVEZXZpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Shop/Devices.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hvcFxEZXZpY2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/Shop/EditDevice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hvcFxFZGl0RGV2aWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/Home/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -63,3 +103,11 @@ build_metadata.AdditionalFiles.CssScope =
 [E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-9ejiqdc91p
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-f0t47r9typ
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/Shared/_LayoutCusLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDdXNMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-5dsxe6e1b9

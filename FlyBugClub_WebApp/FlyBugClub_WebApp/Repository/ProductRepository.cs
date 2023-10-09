@@ -5,6 +5,9 @@ namespace FlyBugClub_WebApp.Repository
 {
     public interface IProductRepository
     {
+        public bool Create(Device device);
+        public bool Update(Device device);
+        public bool Delete(string device);
         public List<Device> GetAllDevices();
         public List<Device> Top10BestSeller();
         public List<Device> FindAllProductByCateId(string Cateid);
@@ -21,6 +24,21 @@ namespace FlyBugClub_WebApp.Repository
         public ProductRepository(FlyBugClubWebApplicationContext ctx)
         {
             _ctx = ctx;
+        }
+
+        public bool Create(Device device)
+        {
+            _ctx.Devices.Add(device);
+            _ctx.SaveChanges();
+            return true;
+        }
+
+        public bool Delete(string device)
+        {
+            Device d = _ctx.Devices.FirstOrDefault(x=>x.DeviceId == device);
+            _ctx.Devices.Remove(d);
+            _ctx.SaveChanges();
+            return true;
         }
 
         public List<Device> FindAllProductByCateId(string Cateid)
@@ -61,6 +79,17 @@ namespace FlyBugClub_WebApp.Repository
         public List<Device> Top10BestSeller()
         {
             return _ctx.Devices.OrderByDescending(x=>x.BorrowRate).Take(10).ToList();
+        }
+
+        public bool Update(Device device)
+        {
+            Device d = _ctx.Devices.FirstOrDefault(x=>x.DeviceId== device.DeviceId);
+            if (d!=null)
+            {
+                _ctx.Entry(d).CurrentValues.SetValues(device);
+                _ctx.SaveChanges();
+            }
+            return true;
         }
     }
 }
