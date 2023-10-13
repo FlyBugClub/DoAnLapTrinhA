@@ -15,9 +15,23 @@ public partial class FlyBugClubWebApplicationContext : DbContext
     {
     }
 
+    public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+
+    public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
+
+    public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+
+    public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+
+    public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+
+    public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+
     public virtual DbSet<BillBorrow> BillBorrows { get; set; }
 
     public virtual DbSet<BorrowDetail> BorrowDetails { get; set; }
+
+    public virtual DbSet<BorrowRate> BorrowRates { get; set; }
 
     public virtual DbSet<CategoryDevice> CategoryDevices { get; set; }
 
@@ -26,6 +40,8 @@ public partial class FlyBugClubWebApplicationContext : DbContext
     public virtual DbSet<DeviceSheetPrice> DeviceSheetPrices { get; set; }
 
     public virtual DbSet<DiscountDevice> DiscountDevices { get; set; }
+
+    public virtual DbSet<HistoryUpdate> HistoryUpdates { get; set; }
 
     public virtual DbSet<HoSoTuyenDung> HoSoTuyenDungs { get; set; }
 
@@ -47,30 +63,119 @@ public partial class FlyBugClubWebApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AspNetRole>(entity =>
+        {
+            entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
+                .IsUnique()
+                .HasFilter("([NormalizedName] IS NOT NULL)");
+
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.NormalizedName).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<AspNetRoleClaim>(entity =>
+        {
+            entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.AspNetRoleClaims).HasForeignKey(d => d.RoleId);
+        });
+
+        modelBuilder.Entity<AspNetUser>(entity =>
+        {
+            entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
+
+            entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
+                .IsUnique()
+                .HasFilter("([NormalizedUserName] IS NOT NULL)");
+
+            entity.Property(e => e.Address).HasMaxLength(100);
+            entity.Property(e => e.Email)
+                .HasMaxLength(256)
+                .IsUnicode(false);
+            entity.Property(e => e.Faculty).HasMaxLength(50);
+            entity.Property(e => e.FullName).HasMaxLength(50);
+            entity.Property(e => e.Gender).HasMaxLength(5);
+            entity.Property(e => e.Major).HasMaxLength(100);
+            entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
+            entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+            entity.Property(e => e.Phone)
+                .HasMaxLength(11)
+                .IsFixedLength();
+            entity.Property(e => e.PositionId)
+                .HasMaxLength(10)
+                .IsFixedLength()
+                .HasColumnName("PositionID");
+            entity.Property(e => e.Uid)
+                .HasMaxLength(15)
+                .IsFixedLength()
+                .HasColumnName("UID");
+            entity.Property(e => e.UserName).HasMaxLength(256);
+
+            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
+                .UsingEntity<Dictionary<string, object>>(
+                    "AspNetUserRole",
+                    r => r.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
+                    l => l.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
+                    j =>
+                    {
+                        j.HasKey("UserId", "RoleId");
+                        j.ToTable("AspNetUserRoles");
+                        j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
+                    });
+        });
+
+        modelBuilder.Entity<AspNetUserClaim>(entity =>
+        {
+            entity.HasIndex(e => e.UserId, "IX_AspNetUserClaims_UserId");
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserClaims).HasForeignKey(d => d.UserId);
+        });
+
+        modelBuilder.Entity<AspNetUserLogin>(entity =>
+        {
+            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+
+            entity.HasIndex(e => e.UserId, "IX_AspNetUserLogins_UserId");
+
+            entity.Property(e => e.LoginProvider).HasMaxLength(128);
+            entity.Property(e => e.ProviderKey).HasMaxLength(128);
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserLogins).HasForeignKey(d => d.UserId);
+        });
+
+        modelBuilder.Entity<AspNetUserToken>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
+
+            entity.Property(e => e.LoginProvider).HasMaxLength(128);
+            entity.Property(e => e.Name).HasMaxLength(128);
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
+        });
+
         modelBuilder.Entity<BillBorrow>(entity =>
         {
             entity.HasKey(e => e.Bid);
 
             entity.ToTable("BillBorrow");
 
-            entity.Property(e => e.Bid)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("BID");
+            entity.Property(e => e.Bid).HasColumnName("BID");
             entity.Property(e => e.BorrowDate).HasColumnType("datetime");
+            entity.Property(e => e.DepositPriceOnBill).HasColumnType("money");
             entity.Property(e => e.Note).HasMaxLength(200);
             entity.Property(e => e.ReceiveDay).HasColumnType("datetime");
             entity.Property(e => e.ReturnDate).HasColumnType("datetime");
             entity.Property(e => e.Sid)
-                .HasMaxLength(15)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("SID");
             entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
+            entity.Property(e => e.Total).HasColumnType("money");
 
             entity.HasOne(d => d.SidNavigation).WithMany(p => p.BillBorrows)
                 .HasForeignKey(d => d.Sid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_BillBorrow_User");
+                .HasConstraintName("FK_BillBorrow_User1");
 
             entity.HasOne(d => d.Supplier).WithMany(p => p.BillBorrows)
                 .HasForeignKey(d => d.SupplierId)
@@ -82,16 +187,12 @@ public partial class FlyBugClubWebApplicationContext : DbContext
         {
             entity.ToTable("BorrowDetail");
 
-            entity.Property(e => e.BorrowDetailId)
-                .ValueGeneratedNever()
-                .HasColumnName("BorrowDetailID");
-            entity.Property(e => e.Bid)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("BID");
+            entity.Property(e => e.BorrowDetailId).HasColumnName("BorrowDetailID");
+            entity.Property(e => e.Bid).HasColumnName("BID");
+            entity.Property(e => e.DepositPrice).HasColumnType("money");
             entity.Property(e => e.DeviceId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("DeviceID");
             entity.Property(e => e.Price)
                 .HasColumnType("money")
@@ -109,6 +210,32 @@ public partial class FlyBugClubWebApplicationContext : DbContext
                 .HasConstraintName("FK_BorrowDetail_Device");
         });
 
+        modelBuilder.Entity<BorrowRate>(entity =>
+        {
+            entity.HasKey(e => new { e.DeviceId, e.Uid });
+
+            entity.ToTable("BorrowRate");
+
+            entity.Property(e => e.DeviceId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("DeviceID");
+            entity.Property(e => e.Uid)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("UID");
+
+            entity.HasOne(d => d.Device).WithMany(p => p.BorrowRates)
+                .HasForeignKey(d => d.DeviceId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_BorrowRate_Device");
+
+            entity.HasOne(d => d.UidNavigation).WithMany(p => p.BorrowRates)
+                .HasForeignKey(d => d.Uid)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_BorrowRate_User");
+        });
+
         modelBuilder.Entity<CategoryDevice>(entity =>
         {
             entity.HasKey(e => e.CategoryId).HasName("PK_Category");
@@ -116,8 +243,8 @@ public partial class FlyBugClubWebApplicationContext : DbContext
             entity.ToTable("CategoryDevice");
 
             entity.Property(e => e.CategoryId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("CategoryID");
             entity.Property(e => e.CategoryName).HasMaxLength(50);
         });
@@ -127,12 +254,12 @@ public partial class FlyBugClubWebApplicationContext : DbContext
             entity.ToTable("Device");
 
             entity.Property(e => e.DeviceId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("DeviceID");
             entity.Property(e => e.CategoryId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("CategoryID");
             entity.Property(e => e.Describe).HasMaxLength(200);
             entity.Property(e => e.ImagePath)
@@ -158,8 +285,8 @@ public partial class FlyBugClubWebApplicationContext : DbContext
                 .IsFixedLength()
                 .HasColumnName("SheetPriceID");
             entity.Property(e => e.DeviceId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("DeviceID");
             entity.Property(e => e.EndDate).HasColumnType("date");
             entity.Property(e => e.StartDate).HasColumnType("date");
@@ -179,8 +306,8 @@ public partial class FlyBugClubWebApplicationContext : DbContext
                 .IsFixedLength()
                 .HasColumnName("DiscountDeviceID");
             entity.Property(e => e.DeviceId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("DeviceID");
             entity.Property(e => e.EndDate).HasColumnType("date");
             entity.Property(e => e.StartDate).HasColumnType("date");
@@ -189,6 +316,33 @@ public partial class FlyBugClubWebApplicationContext : DbContext
                 .HasForeignKey(d => d.DeviceId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Discount_Device_Device");
+        });
+
+        modelBuilder.Entity<HistoryUpdate>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("HistoryUpdate");
+
+            entity.Property(e => e.Bid).HasColumnName("BID");
+            entity.Property(e => e.BorrowDetailId).HasColumnName("BorrowDetailID");
+            entity.Property(e => e.Uid)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("UID");
+            entity.Property(e => e.UpdateDate).HasColumnType("datetime");
+
+            entity.HasOne(d => d.BorrowDetail).WithMany()
+                .HasForeignKey(d => d.BorrowDetailId)
+                .HasConstraintName("FK_HistoryUpdate_BillBorrow");
+
+            entity.HasOne(d => d.BorrowDetailNavigation).WithMany()
+                .HasForeignKey(d => d.BorrowDetailId)
+                .HasConstraintName("FK_HistoryUpdate_BorrowDetail");
+
+            entity.HasOne(d => d.UidNavigation).WithMany()
+                .HasForeignKey(d => d.Uid)
+                .HasConstraintName("FK_HistoryUpdate_User");
         });
 
         modelBuilder.Entity<HoSoTuyenDung>(entity =>
@@ -229,8 +383,8 @@ public partial class FlyBugClubWebApplicationContext : DbContext
                 .IsFixedLength()
                 .HasColumnName("ODID");
             entity.Property(e => e.DeviceId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("DeviceID");
             entity.Property(e => e.Oid)
                 .HasMaxLength(10)
@@ -253,8 +407,8 @@ public partial class FlyBugClubWebApplicationContext : DbContext
             entity.ToTable("Position");
 
             entity.Property(e => e.PositionId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(5)
+                .IsUnicode(false)
                 .HasColumnName("PositionID");
             entity.Property(e => e.PositionName).HasMaxLength(50);
         });
@@ -283,31 +437,27 @@ public partial class FlyBugClubWebApplicationContext : DbContext
             entity.ToTable("User");
 
             entity.Property(e => e.StudentId)
-                .HasMaxLength(15)
-                .IsFixedLength()
+                .HasMaxLength(50)
+                .IsUnicode(false)
                 .HasColumnName("StudentID");
+            entity.Property(e => e.Account)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.Address).HasMaxLength(100);
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
-                .IsFixedLength();
+                .IsUnicode(false);
             entity.Property(e => e.Faculty).HasMaxLength(50);
-            entity.Property(e => e.Gender)
-                .HasMaxLength(5)
-                .IsFixedLength();
+            entity.Property(e => e.Gender).HasMaxLength(50);
             entity.Property(e => e.Major).HasMaxLength(100);
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.Phone)
-                .HasMaxLength(11)
-                .IsFixedLength();
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.PositionId)
-                .HasMaxLength(10)
-                .IsFixedLength()
+                .HasMaxLength(5)
+                .IsUnicode(false)
                 .HasColumnName("PositionID");
-
-            entity.HasOne(d => d.Position).WithMany(p => p.Users)
-                .HasForeignKey(d => d.PositionId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_User_Position");
         });
 
         modelBuilder.Entity<YeuCauUngTuyen>(entity =>

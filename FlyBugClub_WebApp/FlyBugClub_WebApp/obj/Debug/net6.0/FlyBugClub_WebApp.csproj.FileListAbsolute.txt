@@ -267,3 +267,11 @@ E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebAp
 E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutAdmin.cshtml.rz.scp.css
 E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutCusLogin.cshtml.rz.scp.css
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+E:\Hoa Sen University\IT\Do_An_chuyen_nganh_A\FlyBugClub_WebApp\FlyBugClub_WebApp\obj\Debug\net6.0\FlyBugClub_WebApp.MvcApplicationPartsAssemblyInfo.cs

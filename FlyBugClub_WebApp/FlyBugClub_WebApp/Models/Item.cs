@@ -8,5 +8,6 @@
         public decimal Price { get; set; }
         public decimal lineTotla { get; set; }
         public string ImagePath { get; set; }
+        public decimal DepositPrice { get; set; }
     }
 }

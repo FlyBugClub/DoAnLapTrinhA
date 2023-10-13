@@ -27,6 +27,8 @@ public partial class Device
 
     public virtual ICollection<BorrowDetail> BorrowDetails { get; set; } = new List<BorrowDetail>();
 
+    public virtual ICollection<BorrowRate> BorrowRates { get; set; } = new List<BorrowRate>();
+
     public virtual CategoryDevice Category { get; set; } = null!;
 
     public virtual ICollection<DeviceSheetPrice> DeviceSheetPrices { get; set; } = new List<DeviceSheetPrice>();

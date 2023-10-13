@@ -17,13 +17,15 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
-    public string Major { get; set; } = null!;
+    public string? Major { get; set; }
 
-    public string Faculty { get; set; } = null!;
+    public string? Faculty { get; set; }
 
     public string PositionId { get; set; } = null!;
 
+    public string? Account { get; set; }
+
     public virtual ICollection<BillBorrow> BillBorrows { get; set; } = new List<BillBorrow>();
 
-    public virtual Position Position { get; set; } = null!;
+    public virtual ICollection<BorrowRate> BorrowRates { get; set; } = new List<BorrowRate>();
 }

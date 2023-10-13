@@ -17,6 +17,7 @@ section.body .search {
     background-color: #565656;
     border-radius: 20px 20px 20px 20px;
     position: relative;
+    margin-bottom: 50px;
 }
 
 .body .search store-note {
@@ -109,6 +110,11 @@ section.body .search {
 }
 
 /*  @############ RIGHT ############@ */
+
+.store{
+    width: 100%
+}
+
 .body .right .store h1 {
     color: white;
     text-align: center;

@@ -1,12 +1,15 @@
 ﻿using FlyBugClub_WebApp.Models;
 using FlyBugClub_WebApp.Repository;
 using Humanizer.Localisation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 
 namespace FlyBugClub_WebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class CategoryController : Controller
     {
         private IGenreRepository _genreRepository;

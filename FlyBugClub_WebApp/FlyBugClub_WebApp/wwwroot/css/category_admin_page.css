@@ -8,7 +8,7 @@
 
 .Category-area .btn-newDevice {
     display: flex;
-    float: right;
+    justify-content: space-between;
 }
 
 .Category-area .btn-newDevice button{

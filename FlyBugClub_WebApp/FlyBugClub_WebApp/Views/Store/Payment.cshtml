@@ -1,10 +1,22 @@
-﻿@*@model List<FlyBugClub_WebApp.Models.Device>*@
+﻿@using Microsoft.AspNetCore.Identity
+@using FlyBugClub_WebApp.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @model MenuCard
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var UserId = user.UID;
+    var fullName = user.FullName;
+    var phonenumber = user.PhoneNumber;
+    var address = user.Address;
+}
 
 <section class="body payment">
     <div class="container">
         <div class="row">
-            <div class="col col-lg-8">
+            <div class="col col-xxl-8 col-xl-9 col-lg-8 col-md-7 col-sm-6">
                 @*<h1>@ViewBag.sessionId</h1>*@
                 @if(Model.Card.GetCountItem() == 0)
                 {
@@ -72,39 +84,39 @@
                 }
                 
             </div>
-            <div class="col col-lg-4">
-                <form class="get-info-form" action="">
+            <div class="col-xxl-4 col-xl-4">
+                <form class="get-info-form" asp-controller="store" asp-action="Payment" method="post">
                     <h5>Thông tin khách hàng</h5>
                     <table>
                         <tr>
                             <th>Họ tên</th>
-                            <th><input type="text"></th>
+                            <th><input type="text" value="@fullName"></th>
                         </tr>
                         <tr>
                             <th>MSSV/MSNV</th>
-                            <th><input type="text"></th>
+                            <th><input type="text" value="@UserId"></th>
                         </tr>
                         <tr>
                             <th>Số điện thoại</th>
-                            <th><input type="text"></th>
+                            <th><input type="text" value="@phonenumber"></th>
                         </tr>
                         <tr>
                             <th>Địa chỉ</th>
-                            <th><input type="text"></th>
+                            <th><input type="text" value="@address"></th>
                         </tr>
                         <tr>
                             <th>Ngày nhận</th>
-                            <th><input type="datetime-local"></th>
+                            <th><input type="datetime-local" id="myDatetimeInput" name="myDatetimeInput"></th>
                         </tr>
                         <tr>
                             <th>Ghi chú</th>
-                            <th class="note"><textarea></textarea></th>
+                            <th class="note"><textarea name="_note"></textarea></th>
                         </tr>
                         <tr>
                             <th></th>
                             <th class="btn-order">
                                 <div class="center">
-                                    <button><a href="">Đặt hàng</a></button>
+                                    <button><a asp-controller="store" asp-action="CheckOut">Đặt hàng</a></button>
                                 </div>
 
                             </th>

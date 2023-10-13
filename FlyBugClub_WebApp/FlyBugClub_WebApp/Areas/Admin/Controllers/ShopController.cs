@@ -1,19 +1,27 @@
-﻿using FlyBugClub_WebApp.Models;
+﻿using FlyBugClub_WebApp.Areas.Identity.Data;
+using FlyBugClub_WebApp.Models;
 using FlyBugClub_WebApp.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FlyBugClub_WebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class ShopController : Controller
     {
         private IProductRepository _productRepository;
         private IGenreRepository _genreRepository;
-        public ShopController(IProductRepository productRepository, IGenreRepository genreRepository)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public ShopController(IProductRepository productRepository, 
+                                IGenreRepository genreRepository,
+                                SignInManager<ApplicationUser> signInManager)
         {
             _productRepository = productRepository;
             _genreRepository = genreRepository;
+            _signInManager = signInManager;
         }
         public IActionResult Devices()
         {
@@ -66,5 +74,11 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
             _productRepository.Delete(id);
             return RedirectToAction("Devices", "Shop");
         }
+
+        /*public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync();
+            return LocalRedirect("/admin/dashboard/logout");
+        }*/
     }
 }

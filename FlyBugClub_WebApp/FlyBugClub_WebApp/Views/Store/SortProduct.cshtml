@@ -36,9 +36,9 @@
                             </div>
                         </div>
                         <p>Hoặc tìm kiếm sản phẩm</p>
-                        <form class="search-form" action="@Url.Action("SearchProducts", "Store")" method="get">
+                        <form class="search-form" id="form" action="@Url.Action("Search", "Store")" method="get">
                             <div class="center">
-                                <input type="text" class="text-input" id="search-input" name="productName" placeholder="Tìm kiếm..." />
+                                <input type="text" class="text-input" id="keyword" name="keyword" onkeydown="return preventEnter(event)" value="@ViewBag.keyword" placeholder="Tìm kiếm..." />
                                 <button type="submit" class="search-button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>

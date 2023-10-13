@@ -41,7 +41,7 @@
                         <p>Hoặc tìm kiếm sản phẩm</p>
                         <form class="search-form" asp-controller="store" asp-action="Search" method="get">
                             <div class="center">
-                                <input type="text" class="text-input" id="keyword" name="keyword" placeholder="Tìm kiếm..." />
+                                <input type="text" class="text-input" id="keyword" name="keyword" onkeydown="return preventEnter(event)" value="@ViewBag.keyword" placeholder="Tìm kiếm..." />
                                 <button type="submit" class="search-button" id="keyword"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>

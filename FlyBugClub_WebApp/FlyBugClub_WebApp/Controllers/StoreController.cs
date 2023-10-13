@@ -6,6 +6,8 @@ using System.Data;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using FlyBugClub_WebApp.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace FlyBugClub_WebApp.Controllers
 {
@@ -16,18 +18,28 @@ namespace FlyBugClub_WebApp.Controllers
         private readonly ILogger<StoreController> _logger;
         private IProductRepository _productRepository;
         private IGenreRepository _genreRepository;
+        SignInManager<ApplicationUser> _signInManager;
 
         public StoreController(FlyBugClubWebApplicationContext ctx, 
                                 ILogger<StoreController> logger, 
                                 IProductRepository productRepository,
-                                IGenreRepository genreRepository
+                                IGenreRepository genreRepository,
+                                SignInManager<ApplicationUser> signInManager
             )
         {
             _ctx = ctx;
             _logger = logger;
             _productRepository = productRepository;
             _genreRepository = genreRepository;
+            _signInManager = signInManager;
         }
+        public static string note { get; set; }
+
+        public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync();
+            return LocalRedirect("/");
+        }               
 
         public IActionResult Store(int page = 1)
         {
@@ -245,27 +257,46 @@ namespace FlyBugClub_WebApp.Controllers
             return View("FillProduct", m);
         }
 
-        public IActionResult Payment()
+        public IActionResult Payment(string _note)
         {
-            List<Device> top10BestSeller = _productRepository.Top10BestSeller();
-
-            MenuCard m = new MenuCard();
-            m.Top10Bestdevicces = top10BestSeller;
-
-            ViewBag.sessionId = HttpContext.Session.Id;
-            CardModel cartModel = new CardModel();
-            cartModel.CardId = HttpContext.Session.Id;
-            if (HttpContext.Session.Get<List<Item>>("store") != null)
+            if (!_signInManager.IsSignedIn(User))
             {
-                List<Item>? items = HttpContext.Session.Get<List<Item>>("store");
-                cartModel.setAllItem(items);
+                return LocalRedirect("/identity/account/logincustomer");
             }
+            else
+            {
+                List<Device> top10BestSeller = _productRepository.Top10BestSeller();
 
-            m.Card = cartModel;
+                MenuCard m = new MenuCard();
+                m.Top10Bestdevicces = top10BestSeller;
 
-            return View(m);
+                ViewBag.sessionId = HttpContext.Session.Id;
+                CardModel cartModel = new CardModel();
+                cartModel.CardId = HttpContext.Session.Id;
+                if (HttpContext.Session.Get<List<Item>>("store") != null)
+                {
+                    List<Item>? items = HttpContext.Session.Get<List<Item>>("store");
+                    cartModel.setAllItem(items);
+                }
+
+                ViewBag.Note = _note;
+
+
+                m.Card = cartModel;
+
+                cartModel.NoteBill = ViewBag.Note;
+                StoreController.note = _note;
+
+                return View(m);
+            }
         }
-        
+
+        public IActionResult CheckOut(User user, CardModel cardModel)
+        {
+            ClearAllCartItem();
+            return RedirectToAction("Payment");
+        }
+
         public IActionResult AddToCard(string id)
         {
             //1. Find product by id
@@ -364,17 +395,23 @@ namespace FlyBugClub_WebApp.Controllers
 
         public IActionResult ClearAllCartItem()
         {
-            HttpContext.Session.Remove("cart");
+            HttpContext.Session.Remove("Store");
 
-            return RedirectToAction("Payment", "cart");
+            return RedirectToAction("Payment", "Store");
         }
 
-        public IActionResult DetailCard(string id)
+        public IActionResult DetailCard(string Id)
         {
             //1. Find product by id
-            Device device = _productRepository.findById(id);
+            var device = _productRepository.findById(Id);
 
-            return View("DetailCard", device);
+            if (device == null)
+            {
+                ViewBag.note = "Không tìm thấy sp";
+                return NotFound(); // Trong trường hợp không tìm thấy thiết bị
+            }
+
+            return View(device);
         }
     }
 }

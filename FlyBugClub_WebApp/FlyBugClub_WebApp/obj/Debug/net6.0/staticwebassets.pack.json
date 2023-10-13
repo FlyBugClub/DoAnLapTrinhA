@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\appsettings.json"
     },
     {
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\_admin_login.css",
+      "PackagePath": "staticwebassets\\css\\_admin_login.css"
+    },
+    {
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\bill_admin_page.css",
+      "PackagePath": "staticwebassets\\css\\bill_admin_page.css"
+    },
+    {
       "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\category_admin_page.css",
       "PackagePath": "staticwebassets\\css\\category_admin_page.css"
     },

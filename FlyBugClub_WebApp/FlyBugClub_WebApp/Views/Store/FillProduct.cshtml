@@ -38,7 +38,7 @@
                         <p>Hoặc tìm kiếm sản phẩm</p>
                         <form class="search-form" action="@Url.Action("Search", "Store")" method="get">
                             <div class="center">
-                                <input type="text" class="text-input" id="keyword" name="keyword" placeholder="Tìm kiếm..." />
+                                <input type="text" class="text-input" id="keyword" name="keyword" onkeydown="return preventEnter(event)" value="@ViewBag.keyword" placeholder="Tìm kiếm..." />
                                 <button type="submit" class="search-button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>
@@ -54,10 +54,34 @@
                                 <form method="get" asp-action="FillProduct" asp-controller="Store" >
                                     <span>Bug Store</span>
                                     <select name="fillOption" id="fillOption" class="category" onchange="this.form.submit()">
-                                        <option value="all">Tất cả</option>
-                                        <option value="1">Cảm biến</option>
-                                        <option value="2">Phần cứng</option>
-                                        <option value="3">Kết nối</option>
+                                        @if (ViewBag.fillOption == "all")
+                                        {
+                                            <option value="all" selected>Tất cả</option>
+                                            <option value="1">Cảm biến</option>
+                                            <option value="2">Phần cứng</option>
+                                            <option value="3">Kết nối</option>
+                                        }
+                                        else if (ViewBag.fillOption == "1")
+                                        {
+                                            <option value="all">Tất cả</option>
+                                            <option value="1" selected>Cảm biến</option>
+                                            <option value="2">Phần cứng</option>
+                                            <option value="3">Kết nối</option>
+                                        }
+                                        else if (ViewBag.fillOption == "2")
+                                        {
+                                            <option value="all">Tất cả</option>
+                                            <option value="1">Cảm biến</option>
+                                            <option value="2" selected>Phần cứng</option>
+                                            <option value="3">Kết nối</option>
+                                        }
+                                        else if (ViewBag.fillOption == "3")
+                                        {
+                                            <option value="all">Tất cả</option>
+                                            <option value="1">Cảm biến</option>
+                                            <option value="2">Phần cứng</option>
+                                            <option value="3" selected>Kết nối</option>
+                                        }
                                     </select>
                                 </form>
                             </div>

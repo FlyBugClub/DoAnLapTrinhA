@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using FlyBugClub_WebApp.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,6 +27,7 @@
     <link rel="stylesheet" href="~/css/device_admin_page.css">
     <link rel="stylesheet" href="~/css/create_device.css">
     <link rel="stylesheet" href="~/css/category_admin_page.css">
+    <link rel="stylesheet" href="~/css/bill_admin_page.css">
 
     <!-- JetBrains Mono font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,11 +43,12 @@
     <!-- ======================== -->
     <!-- ======== HEADER ======== -->
     <!-- =========================-->
-    <header class="center">
+    <header class="center ml100">
         <div class="header">
             <div class="center infomation-area">
                 <i class="fa-solid fa-envelope"></i>
                 <i class="fa-solid fa-bell"></i>
+                <h6>@UserManager.GetUserName(User)</h6>
                 <img src="~/img/img_icon/avatar.png" alt="">
             </div>
         </div>
@@ -81,7 +89,7 @@
                         <i class="fas fa-solid fa-sitemap"></i>
                         <span class="nav-item">Category</span>
                     </a>
-                    <a href="#" class="sub-item">
+                    <a asp-area="Admin" asp-controller="OrderProcessing" asp-action="Bill" class="sub-item">
                         <i class="fas fa-solid fa-file-invoice-dollar"></i>
                         <span class="nav-item">receiption</span>
                     </a>
@@ -111,7 +119,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="logout">
+                <a href="/admin/dashboard/logout" class="logout">
                     <i class="fas fa-solid fa-right-from-bracket"></i>
                     <span class="nav-item">Logout</span>
                 </a>
@@ -122,17 +130,20 @@
     <!-- ======================== -->
     <!-- ========= BODY ========= -->
     <!-- =========================-->
-    <div class="center">
+    <div class="center ml100">
         @RenderBody()
     </div>
         
 
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.min.js"></script>
 
     <!-- ======== JavaScript ======== -->
     @*JS*@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>*@
     <script src="~/js/collapenav.js"></script>
+
+    <script src="~/js/table_expand_process_bill.js"></script>
 </body>
 </html>
