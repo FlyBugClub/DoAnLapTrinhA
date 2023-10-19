@@ -33,7 +33,8 @@ namespace FlyBugClub_WebApp.Controllers
             _genreRepository = genreRepository;
             _signInManager = signInManager;
         }
-        public static string note { get; set; }
+        public static string noteBill { get; set; }
+        /*public DateTime ReceiptDate { get; set; }*/
 
         public IActionResult Logout()
         {
@@ -85,7 +86,7 @@ namespace FlyBugClub_WebApp.Controllers
             m.Card = cartModel;
 
             return View("Store", m);
-        }
+        } // xử lý cửa hàng
 
         [HttpGet]
         public IActionResult Search(string keyword, int page = 1)
@@ -130,7 +131,7 @@ namespace FlyBugClub_WebApp.Controllers
             m.GetDevices = paginatedProducts;
 
             return View("Search", m);
-        }
+        }  // tìm kiếm sản phẩm
 
         public IActionResult IncreaseBorrowRate(string deviceId)
         {
@@ -194,7 +195,7 @@ namespace FlyBugClub_WebApp.Controllers
             ViewBag.SortOption = sortOption;
 
             return View("SortProduct", m);
-        }
+        }  // Sắp xếp sản phẩm
 
         [HttpGet]
         public IActionResult FillProduct(string fillOption, int page = 1)
@@ -255,9 +256,9 @@ namespace FlyBugClub_WebApp.Controllers
             ViewBag.fillOption = fillOption;
 
             return View("FillProduct", m);
-        }
+        }  // lọc sản phẩm theo loại
 
-        public IActionResult Payment(string _note)
+        public IActionResult Payment(string note)  //Xử lý giỏ hàng
         {
             if (!_signInManager.IsSignedIn(User))
             {
@@ -279,23 +280,108 @@ namespace FlyBugClub_WebApp.Controllers
                     cartModel.setAllItem(items);
                 }
 
-                ViewBag.Note = _note;
-
+                noteBill = note;
 
                 m.Card = cartModel;
 
-                cartModel.NoteBill = ViewBag.Note;
+                /*cartModel.NoteBill = ViewBag.Note;
                 StoreController.note = _note;
-
+*/
                 return View(m);
             }
         }
 
-        public IActionResult CheckOut(User user, CardModel cardModel)
+        public IActionResult CheckOut()
         {
+            //doc session va luu database
+            List<Item>? items = HttpContext.Session.Get<List<Item>>("store");
+
+            BillBorrow bill = new BillBorrow();
+
+            string userEmail = string.Empty;
+            if (User.Identity.IsAuthenticated)
+            {
+                userEmail = User.Identity.Name;
+            }
+
+            /*var note = Request.Form["note"].ToString();*/
+            /*var receiptDateStr = form["myDatetimeInput"];*/
+            /*DateTime receiptDate;*/
+
+            User u = _ctx.Users.OrderByDescending(x => x.Email == userEmail).Take(1).SingleOrDefault();
+            /*if (DateTime.TryParse(receiptDateStr, out receiptDate))
+            {*/
+                bill.Sid = u.StudentId;
+                bill.BorrowDate = DateTime.Now;
+                bill.ReturnDate = null;
+                bill.ReceiveDay = null;
+                bill.Note = null;
+                bill.SupplierId = 1;
+                bill.FeeShip = null;
+                bill.Status = 0;
+                _ctx.BillBorrows.Add(bill);
+                _ctx.SaveChanges();
+            /*}*/
+
+            //2
+            var BillId = _ctx.BillBorrows.OrderByDescending(x => x.Bid).Take(1).SingleOrDefault().Bid;
+            var TC = _ctx.Users.Where(x => x.PositionId == "TC").ToList();
+            var MB = _ctx.Users.Where(x => x.PositionId == "MB").ToList();
+            var STU = _ctx.Users.Where(x => x.PositionId == "STU").ToList();
+
+            decimal DepositMoney = 0m;
+            decimal TotalBill = 0m;
+            decimal TotalBillDeposit = 0m;
+
+            foreach(var item in items)
+            {
+                var device = _ctx.Devices.FirstOrDefault(x => x.DeviceId == item.Id);
+
+                BorrowDetail bd= new BorrowDetail();
+                bd.Bid = BillId;
+                bd.DeviceId= item.Id;
+                bd.Price = item.Price;
+                bd.Quantity= item.Quantity;
+                device.Quantity -= item.Quantity;
+                bd.ReturnQuantity = 0;
+                bd.QtyDamage = 0;
+                
+                // Kiểm tra nếu người dùng có vị trí là "TC"
+                if (TC.Any(user => user.StudentId == u.StudentId))
+                {
+                    DepositMoney = (item.Price * 0m) * item.Quantity;
+                }
+                else if (MB.Any(x => x.StudentId == u.StudentId))
+                {
+                    // Áp dụng giảm giá 80% cho thành viên
+                    DepositMoney = (item.Price * 0.2m) * item.Quantity; // 20% của giá gốc
+                }
+                else if (STU.Any(x => x.StudentId == u.StudentId))
+                {
+                    // Áp dụng giảm giá 60% cho thành viên
+                    DepositMoney = (item.Price * 0.4m) * item.Quantity; // 40% của giá gốc
+                }
+                else
+                {
+                    // Không áp dụng giảm giá
+                    DepositMoney = item.Price * item.Quantity;
+                }
+                TotalBill += DepositMoney;
+                bd.SubTotal= DepositMoney;
+ 
+                bd.DepositPrice = item.Price * item.Quantity;
+                TotalBillDeposit += item.Price * item.Quantity;
+
+                _ctx.Entry(device).State = EntityState.Modified;
+                _ctx.BorrowDetails.Add(bd);
+            }
+            bill.Total = TotalBill;
+            bill.DepositPriceOnBill = TotalBillDeposit;
+            _ctx.SaveChanges();
+
             ClearAllCartItem();
-            return RedirectToAction("Payment");
-        }
+            return RedirectToAction("Payment", "store");
+        }  //Xử lý đơn hàng
 
         public IActionResult AddToCard(string id)
         {
@@ -353,7 +439,7 @@ namespace FlyBugClub_WebApp.Controllers
             }
 
             return RedirectToAction("Payment");
-        }
+        }  //Thêm sản phẩm vào giỏ hàng
 
         public IActionResult UpdateQuantity()
         {
@@ -375,9 +461,9 @@ namespace FlyBugClub_WebApp.Controllers
             HttpContext.Session.Set<List<Item>>("store", cartModel.getAllItem());
 
             return RedirectToAction("Payment");
-        }
+        }  //cập nhật số lượng sản phẩm
 
-        public IActionResult RemoveItem(string id)
+        public IActionResult RemoveItem(string id)  // Xóa sản phẩm trong giỏ hàng
         {
             //1
             List<Item> cartItems = HttpContext.Session.Get<List<Item>>("store");
@@ -393,11 +479,11 @@ namespace FlyBugClub_WebApp.Controllers
             return RedirectToAction("Payment");
         }
 
-        public IActionResult ClearAllCartItem()
+        public IActionResult ClearAllCartItem() //xóa tất cả sản phẩm trong giỏ hàng
         {
-            HttpContext.Session.Remove("Store");
+            HttpContext.Session.Remove("store");
 
-            return RedirectToAction("Payment", "Store");
+            return RedirectToAction("Payment", "store");
         }
 
         public IActionResult DetailCard(string Id)
@@ -412,6 +498,6 @@ namespace FlyBugClub_WebApp.Controllers
             }
 
             return View(device);
-        }
+        } // Vào chi tiết của sản phẩm
     }
 }

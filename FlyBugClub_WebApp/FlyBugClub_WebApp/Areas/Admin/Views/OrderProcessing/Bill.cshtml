@@ -54,11 +54,11 @@
                                 <td class="outsite-info">@item.Total</td>
                                 <td class="outsite-info">
                                     @if(@item.Status == 0){
-                                        <a asp-action="" asp-route-id=""><i class="fa-solid fa-pen-to-square"></i></a> <span>||</span>
+                                        <a asp-action="EditBill" asp-route-id="@item.Bid"><i class="fa-solid fa-pen-to-square"></i></a> <span>||</span>
                                         <a asp-action="DeleteBill" asp-route-id="@item.Bid"><i class="fa-solid fa-trash"></i></a>
                                     }
                                     else if(@item.Status == 1){
-                                        <a asp-action="" asp-route-id=""><i class="fa-solid fa-pen-to-square"></i></a> 
+                                        <a asp-action="EditBill" asp-route-id="@item.Bid"><i class="fa-solid fa-pen-to-square"></i></a>
                                     }
                                     else if(@item.Status == 2){
                                         @*<a asp-action="" asp-route-id=""><i class="fa-solid fa-pen-to-square"></i></a> *@  
@@ -106,7 +106,7 @@
                                                         <td>//</td>
                                                         <td>//</td>
                                                         <td>
-                                                            <a asp-action="" asp-route-id=""><i class="fa-solid fa-pen-to-square"></i></a> <span>||</span>
+                                                            <a asp-action="EditBillDetail" asp-route-id="@detail.Bid"><i class="fa-solid fa-pen-to-square"></i></a> <span>||</span>
                                                             <a asp-action="" asp-route-id=""><i class="fa-solid fa-trash"></i></a>
                                                         </td>
                                                     }

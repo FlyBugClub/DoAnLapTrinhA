@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using FlyBugClub_WebApp.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Net.Mail;
 
 namespace FlyBugClub_WebApp.Areas.Identity.Pages.Account
 {
@@ -98,6 +99,7 @@ namespace FlyBugClub_WebApp.Areas.Identity.Pages.Account
 
             [Required]
             [EmailAddress]
+            [RegularExpression(@"^[\w-]+(\.[\w-]+)*@hoasen\.edu\.vn$|^[\w-]+(\.[\w-]+)*@sinhvien\.hoasen\.edu\.vn$", ErrorMessage = "Invalid email domain.")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 

@@ -29,7 +29,7 @@ public partial class BillBorrow
 
     public virtual ICollection<BorrowDetail> BorrowDetails { get; set; } = new List<BorrowDetail>();
 
-    public virtual User SidNavigation { get; set; } = null!;
+    public virtual User SidNavigation { get; set; } = null!;  //SID
 
     public virtual Supplier Supplier { get; set; } = null!;
 }

@@ -69,13 +69,22 @@ header {
             transition: all .25s ease-in;
         }
 
-        header .nav__links ul > li a:hover {
-            background: linear-gradient(180deg, #EFA02A 0%, rgba(239, 160, 42, 0.24) 79.69%, rgba(239, 160, 42, 0.00) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            transition: all .25s ease-in;
-        }
+header .nav__links a.user-name {
+    max-width: 170px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: var(--max-width);
+    margin-right: 10px;
+}
+
+header .nav__links ul > li a:hover {
+    background: linear-gradient(180deg, #EFA02A 0%, rgba(239, 160, 42, 0.24) 79.69%, rgba(239, 160, 42, 0.00) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: all .25s ease-in;
+}
 
 
     header .nav__links-left {
@@ -104,12 +113,13 @@ header .nav__links-right li a.dangky:hover{
     transition: all .25s ease-in;
 }
 
-    header .nav__links .nav__links-left .active {
-        background: linear-gradient(180deg, #EFA02A 0%, rgba(239, 160, 42, 0.24) 79.69%, rgba(239, 160, 42, 0.00) 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+header .nav__links .active {
+    background: linear-gradient(180deg, #EFA02A 0%, rgba(239, 160, 42, 0.24) 79.69%, rgba(239, 160, 42, 0.00) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all .25s ease-in;
+}
 
     header .nav__links-right .login-img {
         margin-left: -20px;

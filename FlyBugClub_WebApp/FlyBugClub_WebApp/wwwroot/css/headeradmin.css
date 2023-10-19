@@ -228,6 +228,10 @@ nav:hover{
     width: 80%;
 }
 
+.w100{
+    width: 100%;
+}
+
 .mw1440 {
     max-width: 1440px;
     width:100%;
@@ -237,4 +241,8 @@ nav:hover{
 
 .ml100{
     margin-left: 100px !important;
+}
+
+.display-flex{
+    display: flex;
 }

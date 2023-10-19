@@ -9,5 +9,7 @@
         public List<Device> GetDetailBillBorrowed { get; set; }
         public Device device { get; set; }
         public CardModel Card { get; set; }
+        public BillBorrow BillBorrow { get; set; }
+        public BorrowDetail borrowDetail { get; set; }
     }
 }

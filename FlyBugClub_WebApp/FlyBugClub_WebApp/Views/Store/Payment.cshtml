@@ -49,7 +49,7 @@
                                     <tr>
                                         <td class="remove"><a asp-controller="Store" asp-action="RemoveItem" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a></td>
                                         <td class="image"><img src="~/img/img_products/@item.ImagePath" alt="Item"></td>
-                                        <td class="item-name">@item.Name</td>
+                                        <td class="item-name"><a asp-controller="Store" asp-action="DetailCard" asp-route-id="@item.Id">@item.Name</a></td>
                                         <td class="qty">
                                             <div class="center">
                                                 @using (Html.BeginForm("UpdateQuantity", "store", FormMethod.Post))
@@ -85,24 +85,24 @@
                 
             </div>
             <div class="col-xxl-4 col-xl-4">
-                <form class="get-info-form" asp-controller="store" asp-action="Payment" method="post">
+                <form class="get-info-form" asp-controller="store" asp-action="CheckOut" method="post">
                     <h5>Thông tin khách hàng</h5>
                     <table>
                         <tr>
-                            <th>Họ tên</th>
-                            <th><input type="text" value="@fullName"></th>
+                            <th>Họ tên</th> 
+                            <th><input type="text" name="fullName" value="@fullName"></th>
                         </tr>
                         <tr>
                             <th>MSSV/MSNV</th>
-                            <th><input type="text" value="@UserId"></th>
+                            <th><input type="text" name="userId" value="@UserId"></th>
                         </tr>
                         <tr>
                             <th>Số điện thoại</th>
-                            <th><input type="text" value="@phonenumber"></th>
+                            <th><input type="text" name="phonenumber" value="@phonenumber"></th>
                         </tr>
                         <tr>
                             <th>Địa chỉ</th>
-                            <th><input type="text" value="@address"></th>
+                            <th><input type="text" name="address" value="@address"></th>
                         </tr>
                         <tr>
                             <th>Ngày nhận</th>
@@ -110,7 +110,7 @@
                         </tr>
                         <tr>
                             <th>Ghi chú</th>
-                            <th class="note"><textarea name="_note"></textarea></th>
+                            <th class="note"><textarea name="note" id="note"></textarea></th>
                         </tr>
                         <tr>
                             <th></th>
@@ -122,7 +122,6 @@
                             </th>
                         </tr>
                     </table>
-
                 </form>
             </div>
         </div>

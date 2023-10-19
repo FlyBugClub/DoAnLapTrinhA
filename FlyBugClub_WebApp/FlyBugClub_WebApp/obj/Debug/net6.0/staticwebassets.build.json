@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "W7vwfwwrXOsHsnpbTml8/VgdvxCmnlGTZrg0VSbQ9Oc=",
+  "Hash": "+HjoGtT7/F2JvAvdd6NWuj1p7wOR5pgr1dJtLu1Giy0=",
   "Source": "FlyBugClub_WebApp",
   "BasePath": "_content/FlyBugClub_WebApp",
   "Mode": "Default",
@@ -1105,6 +1105,23 @@
       "OriginalItemSpec": "wwwroot\\appsettings.json"
     },
     {
+      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\_admin_edit_bill.css",
+      "SourceId": "FlyBugClub_WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
+      "BasePath": "_content/FlyBugClub_WebApp",
+      "RelativePath": "css/_admin_edit_bill.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\_admin_edit_bill.css"
+    },
+    {
       "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\_admin_login.css",
       "SourceId": "FlyBugClub_WebApp",
       "SourceType": "Discovered",
@@ -1222,6 +1239,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\default_setting.css"
+    },
+    {
+      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\detail_card_device.css",
+      "SourceId": "FlyBugClub_WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
+      "BasePath": "_content/FlyBugClub_WebApp",
+      "RelativePath": "css/detail_card_device.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\detail_card_device.css"
     },
     {
       "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\device_admin_page.css",

@@ -2,6 +2,7 @@
 using FlyBugClub_WebApp.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Data;
 
@@ -13,11 +14,14 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
     {
         private FlyBugClubWebApplicationContext _ctx;
         private IOrderProcessingRepository _orderProcessingRepository;
+        private IProductRepository _productRepository;
         public OrderProcessingController(FlyBugClubWebApplicationContext ctx, 
-                                        IOrderProcessingRepository orderProcessingRepository)
+                                        IOrderProcessingRepository orderProcessingRepository,
+                                        IProductRepository productRepository)
         {
             _ctx = ctx;
             _orderProcessingRepository = orderProcessingRepository;
+            _productRepository = productRepository;
         }
         public IActionResult Bill()
         {
@@ -42,6 +46,58 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
             ViewBag.countDone = countDone;
 
             return View("Bill", getAllBillWDetail);
+        }
+
+        public enum BorrowStatus
+        {
+            Waiting = 0,
+            Borrowing = 1,
+            Done = 2
+        }
+
+        public IActionResult EditBill(int id)
+        {
+            /*var supplierList = _orderProcessingRepository.GetAllSuppliers();
+            ViewBag.SupplierId = new SelectList(supplierList, "SupplierID", "SupplierName");*/
+            var suppliers = _orderProcessingRepository.GetAllSuppliers();
+            var supplierItems = suppliers.Select(s => new SelectListItem
+            {
+                Value = s.SupplierId.ToString(), // Giá trị của mỗi nhà cung cấp là SupplierId.
+                Text = s.SupplierName // Tên của nhà cung cấp là SupplierName.
+            }).ToList();
+
+            ViewBag.SupplierList = supplierItems; // Lưu danh sách các nhà cung cấp vào ViewBag.
+
+            ViewBag.StatusList = new SelectList(Enum.GetValues(typeof(BorrowStatus))
+                            .Cast<BorrowStatus>()
+                            .Select(v => new SelectListItem
+                            {
+                                Text = v.ToString(),
+                                Value = ((int)v).ToString()
+                            }), "Value", "Text");
+
+            return View("EditBill", _orderProcessingRepository.findById(id));
+        }
+
+        public IActionResult EditBillDetail(int billId, int detailId)
+        {
+            /*List<Device> devices = _productRepository.GetAllDevices(); // Thay thế bằng phương thức lấy danh sách thiết bị thực tế
+            var deviceItems = devices.Select(device => new SelectListItem
+            {
+                Value = device.DeviceId.ToString(),
+                Text = device.Name
+            }).ToList();
+
+            ViewBag.DeviceList = deviceItems;*/
+
+            return View("EditBillDetail", _orderProcessingRepository.findBillDetailById(billId, detailId));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateBill(BillBorrow billBorrow)
+        {
+            _orderProcessingRepository.Update(billBorrow);
+            return RedirectToAction("Bill", "OrderProcessing");
         }
 
         public IActionResult DeleteBill(int id)

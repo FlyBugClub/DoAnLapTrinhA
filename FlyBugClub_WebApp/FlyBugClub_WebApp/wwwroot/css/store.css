@@ -1,4 +1,4 @@
-/* ================================ */
+﻿/* ================================ */
 /* ============= BODY ============= */
 /* ================================ */
 
@@ -6,6 +6,12 @@
 
 section.body .container {
     max-width: 1440px;
+}
+
+@media only screen and (max-width: 1340px) {
+    section.body {
+        flex-wrap:wrap !important;
+    }
 }
 
 section.body .left {
@@ -20,9 +26,10 @@ section.body .search {
     margin-bottom: 50px;
 }
 
-.body .search store-note {
-    display: flex;
-    justify-content: center;
+@media only screen and (max-width: 1470px) {
+    section.body .search {
+        margin-left: 10px;
+    }
 }
 
 .body .search .store-note p {
@@ -203,11 +210,16 @@ section.body .search {
 }
 
 .body .right .store p {
+    height: 48px;
     color: white;
     text-align: justify;
     padding: 0 20px;
     font-size: 16px;
     margin: 15px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .body .right .store .icon-card {
@@ -254,10 +266,30 @@ section.body .search {
     margin-bottom: 30px;
 }
 
+/*  @############ SOLD OUT CARD ############@ */
+
+.sold-out-card {
+    position: relative;
+}
+
+.sold-out-card p.sold-out{
+    position: absolute;
+    height: fit-content !important;
+    padding: 3px 50px !important;
+    background: #ea3a3a;
+    color: #012a4a;
+    transform: rotate(-45deg);
+    font-size: 20px !important;
+    font-weight: bolder;
+    text-align:center;
+    top: 18px;
+    left: -45px;
+    clip-path: polygon(21% 0, 77.7% 0, 96% 100%, 2.5% 100%);
+}
+
 /*  @####################################@ */
 /*  @############ Pagination ############@ */
 /*  @####################################@ */
-
 .body .right .store .pagination {
     display: flex;
     align-items: center;

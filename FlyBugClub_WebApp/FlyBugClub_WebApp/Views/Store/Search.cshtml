@@ -79,37 +79,75 @@
                             <div class="row">
                                 @foreach (var item in Model.GetDevices)
                                 {
-                                    <div class="col col-xl-4">
-                                        <div class="item-card">
-                                            <a asp-action="DetailCard"
-                                           asp-controller="Store">
-                                                <img src="~/img/img_products/@item.ImagePath" alt="Photo item store">
-                                                <h3>@item.Name</h3>
-                                                <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
-                                                <div class="center icon-card">
-                                                    <button class="icon icon-share">
-                                                        <a href="#">
-                                                            <i class="fa-solid fa-share"></i>
-                                                        </a>
-                                                    </button>
-                                                    <button class="icon icon-love">
-                                                        <a href="#">
-                                                            <i class="fa-regular fa-heart"></i>
-                                                        </a>
-                                                    </button>
-                                                    <button class="icon icon-share">
-                                                        <a asp-controller="Store" asp-action="AddToCard" asp-route-id="@item.DeviceId">
-                                                            <i class="fa-solid fa-cart-plus"></i>
-                                                        </a>
-                                                    </button>
-                                                </div>
-                                                <div class="center item-price">
-                                                    <h2>@item.Price.ToString("0.000") VNĐ</h2>
-                                                </div>
-                                            </a>
+                                    @if (item.Status == 1)
+                                    {
+                                        <div class="col col-xl-4">
+                                            <div class="item-card">
+                                                <a asp-action="DetailCard"
+                                                    asp-controller="Store">
+                                                    <img src="~/img/img_products/@item.ImagePath" alt="Photo item store">
+                                                    <h3>@item.Name</h3>
+                                                    <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
+                                                    <div class="center icon-card">
+                                                        <button class="icon icon-share">
+                                                            <a href="#">
+                                                                <i class="fa-solid fa-share"></i>
+                                                            </a>
+                                                        </button>
+                                                        <button class="icon icon-love">
+                                                            <a href="#">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                        </button>
+                                                        <button class="icon icon-share">
+                                                            <a asp-controller="Store" asp-action="AddToCard" asp-route-id="@item.DeviceId">
+                                                                <i class="fa-solid fa-cart-plus"></i>
+                                                            </a>
+                                                        </button>
+                                                    </div>
+                                                    <div class="center item-price">
+                                                        <h2>@item.Price.ToString("0.000") VNĐ</h2>
+                                                    </div>
+                                                </a>
 
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
+                                    else if (item.Status == 0)
+                                    {
+                                        <div class="col col-xl-4">
+                                            <div class="item-card sold-out-card">
+                                                <p class="sold-out">Hết hàng</p>
+                                                <a asp-action="DetailCard"
+                                                    asp-controller="Store">
+                                                    <img src="~/img/img_products/@item.ImagePath" alt="Photo item store">
+                                                    <h3>@item.Name</h3>
+                                                    <p>Lorem ipsum dolor sit amet consectetur praesentium?</p>
+                                                    <div class="center icon-card">
+                                                        <button class="icon icon-share">
+                                                            <a href="#">
+                                                                <i class="fa-solid fa-share"></i>
+                                                            </a>
+                                                        </button>
+                                                        <button class="icon icon-love">
+                                                            <a href="#">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                        </button>
+                                                        <button class="icon icon-share">
+                                                            <a href="javascript:void(0);">
+                                                                <i class="fa-solid fa-cart-plus"></i>
+                                                            </a>
+                                                        </button>
+                                                    </div>
+                                                    <div class="center item-price">
+                                                        <h2>@item.Price.ToString("0.000") VNĐ</h2>
+                                                    </div>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    }
                                 }
                             </div>
                         </div>
