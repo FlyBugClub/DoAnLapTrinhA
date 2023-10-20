@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FlyBugClub_WebApp.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
 
 namespace FlyBugClub_WebApp.Controllers
 {
@@ -291,6 +292,7 @@ namespace FlyBugClub_WebApp.Controllers
             }
         }
 
+        [HttpPost]
         public IActionResult CheckOut()
         {
             //doc session va luu database
@@ -304,24 +306,25 @@ namespace FlyBugClub_WebApp.Controllers
                 userEmail = User.Identity.Name;
             }
 
-            /*var note = Request.Form["note"].ToString();*/
-            /*var receiptDateStr = form["myDatetimeInput"];*/
-            /*DateTime receiptDate;*/
+            string format = "yyyy-MM-ddTHH:mm";
+            var note = Request.Form["note"].ToString();
+            var receiptDateStr = Request.Form["myDatetimeInput"];
+            DateTime receiptDate;
 
             User u = _ctx.Users.OrderByDescending(x => x.Email == userEmail).Take(1).SingleOrDefault();
-            /*if (DateTime.TryParse(receiptDateStr, out receiptDate))
-            {*/  
+            if (DateTime.TryParseExact(receiptDateStr, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out receiptDate))
+            {
                 bill.Sid = u.StudentId;
                 bill.BorrowDate = DateTime.Now;
                 bill.ReturnDate = null;
-                bill.ReceiveDay = null;
-                bill.Note = null;
+                bill.ReceiveDay = receiptDate;
+                bill.Note = note;
                 bill.SupplierId = 1;
                 bill.FeeShip = null;
                 bill.Status = 0;
                 _ctx.BillBorrows.Add(bill);
                 _ctx.SaveChanges();
-            /*}*/
+            }
 
             //2
             var BillId = _ctx.BillBorrows.OrderByDescending(x => x.Bid).Take(1).SingleOrDefault().Bid;

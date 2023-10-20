@@ -11,6 +11,7 @@ namespace FlyBugClub_WebApp.Repository
         public List<CategoryDevice> GetAll();
         public CategoryDevice FindById(string id);
         public bool CheckNameCategory(string name);
+        public bool CheckCategoryId(string Id);
     }
     public class GenreProductRepository : IGenreRepository
     {
@@ -18,6 +19,15 @@ namespace FlyBugClub_WebApp.Repository
         public GenreProductRepository(FlyBugClubWebApplicationContext ctx)
         {
             _ctx = ctx;
+        }
+
+        public bool CheckCategoryId(string Id)
+        {
+            CategoryDevice category = _ctx.CategoryDevices.Where(x=>x.CategoryId == Id).FirstOrDefault();
+            if(category == null)
+                return false;
+            else
+                return true;
         }
 
         public bool CheckNameCategory(string name)

@@ -53,6 +53,11 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
                         ViewBag.GenreId = new SelectList(genreList, "CategoryId", "CategoryName");
                         return View("CreateDevice");
                     }
+                    else
+                    {
+                        _productRepository.Create(device);
+                        return RedirectToAction("Devices");
+                    }
                 }
             }
             else
@@ -63,9 +68,6 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
                 ViewBag.GenreId = new SelectList(genreList, "CategoryId", "CategoryName");
                 return View("CreateDevice");
             }
-            
-            _productRepository.Create(device);
-            return RedirectToAction("Devices");
         }
 
         public IActionResult CreateDevice()

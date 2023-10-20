@@ -99,7 +99,7 @@ namespace FlyBugClub_WebApp.Areas.Identity.Pages.Account
 
             [Required]
             [EmailAddress]
-            [RegularExpression(@"^[\w-]+(\.[\w-]+)*@hoasen\.edu\.vn$|^[\w-]+(\.[\w-]+)*@sinhvien\.hoasen\.edu\.vn$", ErrorMessage = "Invalid email domain.")]
+            /*[RegularExpression(@"^[\w-]+(\.[\w-]+)*@hoasen\.edu\.vn$|^[\w-]+(\.[\w-]+)*@sinhvien\.hoasen\.edu\.vn$", ErrorMessage = "Invalid email domain.")]*/
             [Display(Name = "Email")]
             public string Email { get; set; }
 

@@ -55,15 +55,25 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 bool isCategoryNameExist = _genreRepository.CheckNameCategory(categoryDevice.CategoryName);
-                if(isCategoryNameExist)
+                bool isCategoryIdExist =  _genreRepository.CheckCategoryId(categoryDevice.CategoryId);
+                
+                if (isCategoryIdExist)
                 {
-                    ModelState.AddModelError(string.Empty, "Category name is exist!!!");
+                    ModelState.AddModelError(string.Empty, "Category ID is exist!!!");
                     return View("CreateCategory");
                 }
                 else
                 {
-                    _genreRepository.Create(categoryDevice);
-                    return RedirectToAction("CategoryDevice", "Category");
+                    if (isCategoryNameExist)
+                    {
+                        ModelState.AddModelError(string.Empty, "Category name is exist!!!");
+                        return View("CreateCategory");
+                    }
+                    else
+                    {
+                        _genreRepository.Create(categoryDevice);
+                        return RedirectToAction("CategoryDevice", "Category");
+                    }
                 }
             }
             else

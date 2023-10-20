@@ -6,6 +6,10 @@
 /* ====== BUTTON NEW DEVICE ====== */
 /* =============================== */
 
+.CreateCategory li{
+    color: #ff0000 !important;
+}
+
 .Category-area .btn-newDevice {
     display: flex;
     justify-content: space-between;

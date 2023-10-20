@@ -1,4 +1,4 @@
-using FlyBugClub_WebApp.Models;
+﻿using FlyBugClub_WebApp.Models;
 using FlyBugClub_WebApp.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
@@ -33,7 +33,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 });
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false) //tắt confirm email
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<FlyBugClubDBContext>();
 

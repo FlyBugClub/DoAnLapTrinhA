@@ -157,6 +157,7 @@ section.body .search {
 
     .body .right .store .fill-function .fill button {
         background-color: transparent;
+        color: #fff;
         margin: 0 2px;
         padding: 3px 10px;
         border-radius: 20px;
@@ -203,10 +204,15 @@ section.body .search {
 }
 
 .body .right .store h3 {
+    width: 100%;
     margin: 23px 0;
+    padding: 0 28px;
     text-align: center;
     color: white;
     font-size: 24px;
+    white-space: nowrap; /* Ngăn ngừng xuống dòng */
+    overflow: hidden; /* Ẩn nội dung vượt quá độ rộng */
+    text-overflow: ellipsis; /* Hiển thị dấu "..." cho nội dung bị ẩn */
 }
 
 .body .right .store p {
@@ -326,6 +332,7 @@ section.body .search {
             }
 
             .body .right .store .pagination ul li a {
+                color: #fff;
                 font-size: 20px;
                 transform: rotate(0deg);
             }

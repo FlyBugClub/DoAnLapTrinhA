@@ -106,7 +106,7 @@
                         </tr>
                         <tr>
                             <th>Ngày nhận</th>
-                            <th><input type="datetime-local" id="myDatetimeInput" name="myDatetimeInput"></th>
+                            <th><input type="datetime-local" id="myDatetimeInput" name="myDatetimeInput" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"></th>
                         </tr>
                         <tr>
                             <th>Ghi chú</th>
@@ -116,7 +116,7 @@
                             <th></th>
                             <th class="btn-order">
                                 <div class="center">
-                                    <button><a asp-controller="store" asp-action="CheckOut">Đặt hàng</a></button>
+                                    <button type="submit">Đặt hàng</button>
                                 </div>
 
                             </th>

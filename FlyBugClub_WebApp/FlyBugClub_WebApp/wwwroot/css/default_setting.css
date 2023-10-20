@@ -86,14 +86,12 @@ html {
     }
   }
 
-  li,
-a,
-button {
+li, a, button {
     list-style: none;
     font-family: 'JetBrains Mono', monospace;
     font-size: 16px;
     text-decoration: none;
-    color: #fff;
+    /*color: #fff;*/
     /* cursor: url(../img/bug-icon.png) 5 5, auto !important; */
 }
 /* body {

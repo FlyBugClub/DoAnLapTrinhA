@@ -45,6 +45,7 @@ del{
 }
 
 .wraper-card button a {
+    color: #fff;
     font-size: 18px;
     cursor: pointer;
 }
