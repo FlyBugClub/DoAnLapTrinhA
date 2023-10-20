@@ -1,4 +1,4 @@
-﻿using FlyBugClub_WebApp.Models;
+using FlyBugClub_WebApp.Models;
 using FlyBugClub_WebApp.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
