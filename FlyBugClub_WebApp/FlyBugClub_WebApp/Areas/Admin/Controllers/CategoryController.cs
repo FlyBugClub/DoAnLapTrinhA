@@ -52,8 +52,24 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult SaveCategory(CategoryDevice categoryDevice)
         {
-            _genreRepository.Create(categoryDevice);
-            return RedirectToAction("CategoryDevice", "Category");
+            if (ModelState.IsValid)
+            {
+                bool isCategoryNameExist = _genreRepository.CheckNameCategory(categoryDevice.CategoryName);
+                if(isCategoryNameExist)
+                {
+                    ModelState.AddModelError(string.Empty, "Category name is exist!!!");
+                    return View("CreateCategory");
+                }
+                else
+                {
+                    _genreRepository.Create(categoryDevice);
+                    return RedirectToAction("CategoryDevice", "Category");
+                }
+            }
+            else
+            {
+                return View("CreateCategory");
+            }
         }
     }
 }

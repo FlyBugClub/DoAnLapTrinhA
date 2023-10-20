@@ -310,7 +310,7 @@ namespace FlyBugClub_WebApp.Controllers
 
             User u = _ctx.Users.OrderByDescending(x => x.Email == userEmail).Take(1).SingleOrDefault();
             /*if (DateTime.TryParse(receiptDateStr, out receiptDate))
-            {*/
+            {*/  
                 bill.Sid = u.StudentId;
                 bill.BorrowDate = DateTime.Now;
                 bill.ReturnDate = null;

@@ -10,6 +10,7 @@ namespace FlyBugClub_WebApp.Repository
         public bool Delete(string Id);
         public List<CategoryDevice> GetAll();
         public CategoryDevice FindById(string id);
+        public bool CheckNameCategory(string name);
     }
     public class GenreProductRepository : IGenreRepository
     {
@@ -17,6 +18,15 @@ namespace FlyBugClub_WebApp.Repository
         public GenreProductRepository(FlyBugClubWebApplicationContext ctx)
         {
             _ctx = ctx;
+        }
+
+        public bool CheckNameCategory(string name)
+        {
+            CategoryDevice category =_ctx.CategoryDevices.Where(x=>x.CategoryName== name).FirstOrDefault();
+            if(category == null)
+                return false;
+            else
+                return true;
         }
 
         public bool Create(CategoryDevice category)

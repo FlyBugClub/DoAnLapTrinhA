@@ -17,6 +17,8 @@ namespace FlyBugClub_WebApp.Repository
         public List<Device> SearchByName(string keyword);
 
         public Device findById(string id);
+        public bool CheckId(string id);
+        public bool CheckNameDevice(string name);
     }
     public class ProductRepository : IProductRepository
     {
@@ -24,6 +26,24 @@ namespace FlyBugClub_WebApp.Repository
         public ProductRepository(FlyBugClubWebApplicationContext ctx)
         {
             _ctx = ctx;
+        }
+
+        public bool CheckId(string id)
+        {
+            Device device = _ctx.Devices.Where(x=>x.DeviceId== id).FirstOrDefault();
+            if (device == null)
+                return false;
+            else
+                return true;
+        }
+
+        public bool CheckNameDevice(string name)
+        {
+            Device device = _ctx.Devices.Where(x=>x.Name.Trim() == name.Trim()).FirstOrDefault();
+            if(device== null) 
+                return false;
+            else
+                return true;
         }
 
         public bool Create(Device device)

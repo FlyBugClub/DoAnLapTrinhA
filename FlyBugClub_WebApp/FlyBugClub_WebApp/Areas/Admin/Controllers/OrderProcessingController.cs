@@ -81,15 +81,6 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
 
         public IActionResult EditBillDetail(int billId, int detailId)
         {
-            /*List<Device> devices = _productRepository.GetAllDevices(); // Thay thế bằng phương thức lấy danh sách thiết bị thực tế
-            var deviceItems = devices.Select(device => new SelectListItem
-            {
-                Value = device.DeviceId.ToString(),
-                Text = device.Name
-            }).ToList();
-
-            ViewBag.DeviceList = deviceItems;*/
-
             return View("EditBillDetail", _orderProcessingRepository.findBillDetailById(billId, detailId));
         }
 

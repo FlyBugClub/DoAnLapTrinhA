@@ -33,11 +33,37 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult saveDevice(Device device)
         {
-            /*================== Get All Data Genre ==================*/
+            if (ModelState.IsValid)
+            {
+                bool isProductIdExist = _productRepository.CheckId(device.DeviceId);
+                bool isProductNameExist = _productRepository.CheckNameDevice(device.Name);
+                if (isProductIdExist)
+                {
+                    ModelState.AddModelError(string.Empty, "Device Id is exist!!!");
+                    var genreList = _genreRepository.GetAll();
+                    ViewBag.GenreId = new SelectList(genreList, "CategoryId", "CategoryName");
+                    return View("CreateDevice");
+                }
+                else
+                {
+                    if (isProductNameExist)
+                    {
+                        ModelState.AddModelError(string.Empty, "Device name is exist!!!");
+                        var genreList = _genreRepository.GetAll();
+                        ViewBag.GenreId = new SelectList(genreList, "CategoryId", "CategoryName");
+                        return View("CreateDevice");
+                    }
+                }
+            }
+            else
+            {
+                /*================== Get All Data Genre ==================*/
 
-            var genreList = _genreRepository.GetAll();
-            ViewBag.GenreId = new SelectList(genreList, "CategoryId", "CategoryName");
-
+                var genreList = _genreRepository.GetAll();
+                ViewBag.GenreId = new SelectList(genreList, "CategoryId", "CategoryName");
+                return View("CreateDevice");
+            }
+            
             _productRepository.Create(device);
             return RedirectToAction("Devices");
         }
@@ -74,11 +100,5 @@ namespace FlyBugClub_WebApp.Areas.Admin.Controllers
             _productRepository.Delete(id);
             return RedirectToAction("Devices", "Shop");
         }
-
-        /*public IActionResult Logout()
-        {
-            _signInManager.SignOutAsync();
-            return LocalRedirect("/admin/dashboard/logout");
-        }*/
     }
 }
