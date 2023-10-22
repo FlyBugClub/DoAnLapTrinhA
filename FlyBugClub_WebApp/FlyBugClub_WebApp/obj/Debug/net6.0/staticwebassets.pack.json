@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\css\\home.css"
     },
     {
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\login_signup.css",
+      "PackagePath": "staticwebassets\\css\\login_signup.css"
+    },
+    {
       "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\payment.css",
       "PackagePath": "staticwebassets\\css\\payment.css"
     },
