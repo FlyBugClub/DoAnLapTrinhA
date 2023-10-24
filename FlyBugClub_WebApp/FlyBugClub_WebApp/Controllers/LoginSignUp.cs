@@ -17,7 +17,7 @@ namespace FlyBugClub_WebApp.Controllers
         {
             _ctx = ctx;
         }
-
+        /
         public IActionResult VerifyAccount()
         {
 
