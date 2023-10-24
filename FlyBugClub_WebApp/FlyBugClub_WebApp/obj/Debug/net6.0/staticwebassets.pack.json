@@ -65,11 +65,19 @@
       "PackagePath": "staticwebassets\\css\\home.css"
     },
     {
+<<<<<<< HEAD
       "Id": "D:\\Github\\gitlab\\DoAnLapTrinhA\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\login_signup.css",
       "PackagePath": "staticwebassets\\css\\login_signup.css"
     },
     {
       "Id": "D:\\Github\\gitlab\\DoAnLapTrinhA\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\payment.css",
+=======
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\login_signup.css",
+      "PackagePath": "staticwebassets\\css\\login_signup.css"
+    },
+    {
+      "Id": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\payment.css",
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
       "PackagePath": "staticwebassets\\css\\payment.css"
     },
     {

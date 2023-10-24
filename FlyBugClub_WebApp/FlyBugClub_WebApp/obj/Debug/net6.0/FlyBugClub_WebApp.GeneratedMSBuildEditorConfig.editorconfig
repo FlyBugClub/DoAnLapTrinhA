@@ -68,7 +68,11 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [D:/Github/gitlab/DoAnLapTrinhA/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+=======
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
@@ -108,11 +112,19 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [D:/Github/gitlab/DoAnLapTrinhA/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/LoginSignUp/VerifyAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5TaWduVXBcVmVyaWZ5QWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Github/gitlab/DoAnLapTrinhA/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/Shared/Error.cshtml]
+=======
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/LoginSignUp/VerifyAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5TaWduVXBcVmVyaWZ5QWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hoa Sen University/IT/Do_An_chuyen_nganh_A/FlyBugClub_WebApp/FlyBugClub_WebApp/Views/Shared/Error.cshtml]
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using FlyBugClub_WebApp.Areas.Identity.Data;
 using FlyBugClub_WebApp.Migrations;
 using FlyBugClub_WebApp.Models;
@@ -6,11 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MimeKit;
 using Newtonsoft.Json;
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
 
 namespace FlyBugClub_WebApp.Controllers
 {
     public class LoginSignUp : Controller
     {
+<<<<<<< HEAD
         private FlyBugClubWebApplicationContext _ctx;
 
         public LoginSignUp(FlyBugClubWebApplicationContext ctx)
@@ -153,5 +158,11 @@ namespace FlyBugClub_WebApp.Controllers
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+=======
+        public IActionResult VerifyAccount()
+        {
+            return View();
+        }
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
     }
 }

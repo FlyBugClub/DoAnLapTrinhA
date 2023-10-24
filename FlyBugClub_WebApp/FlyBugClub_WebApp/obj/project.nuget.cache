@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "kd/o1noqBqLpWS4PL1J2+PrlPU3PnMOcdvZHhoCkG9Uh2DPirLNYtKagxluEzgOoR8r/85oDTSITLvCP+goKKw==",
+=======
+  "dgSpecHash": "/mecuii1W8926auKYuwQ0ab9UqPWjQow32bhdDJ2TQRbAZyCa2DnWrvEN24+EiRyZswusHrEkKI2mNW/JEgC3A==",
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
   "success": true,
   "projectFilePath": "D:\\Github\\gitlab\\DoAnLapTrinhA\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\FlyBugClub_WebApp.csproj",
   "expectedPackageFiles": [

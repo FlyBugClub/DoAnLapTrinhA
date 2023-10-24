@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "+OK7CC8BGLLEjuIxu2MwgZZE6gz3BS/71OBpL8Qh8Io=",
+=======
+  "Hash": "oJ6YOw9MYg+fcy9Y+QXk+8J3Zzj/Xz6u0u81+jEcDIg=",
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
   "Source": "FlyBugClub_WebApp",
   "BasePath": "_content/FlyBugClub_WebApp",
   "Mode": "Default",
@@ -1326,7 +1330,28 @@
       "OriginalItemSpec": "wwwroot\\css\\home.css"
     },
     {
+<<<<<<< HEAD
       "Identity": "D:\\Github\\gitlab\\DoAnLapTrinhA\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\login_signup.css",
+=======
+      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\login_signup.css",
+      "SourceId": "FlyBugClub_WebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
+      "BasePath": "_content/FlyBugClub_WebApp",
+      "RelativePath": "css/login_signup.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login_signup.css"
+    },
+    {
+      "Identity": "E:\\Hoa Sen University\\IT\\Do_An_chuyen_nganh_A\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\css\\payment.css",
+>>>>>>> fbcf1544c9c1f6d4d62702688f8cad2b1ebf6382
       "SourceId": "FlyBugClub_WebApp",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Github\\gitlab\\DoAnLapTrinhA\\FlyBugClub_WebApp\\FlyBugClub_WebApp\\wwwroot\\",
